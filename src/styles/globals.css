@@ -3,110 +3,158 @@
 @import "tailwindcss/utilities";
 
 @layer utilities {
-  /* Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
 
-  .no-scrollbar::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
+    .no-scrollbar::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
 
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
 
-  input:focus ~ label,
-  input:not(:placeholder-shown) ~ label {
-    @apply -translate-y-2 text-xsmall-regular;
-  }
+    input:focus ~ label,
+    input:not(:placeholder-shown) ~ label {
+        @apply -translate-y-2 text-xsmall-regular;
+    }
 
-  input:focus ~ label {
-    @apply left-0;
-  }
+    input:focus ~ label {
+        @apply left-0;
+    }
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  textarea:-webkit-autofill,
-  textarea:-webkit-autofill:hover,
-  textarea:-webkit-autofill:focus,
-  select:-webkit-autofill,
-  select:-webkit-autofill:hover,
-  select:-webkit-autofill:focus {
-    border: 1px solid #212121;
-    -webkit-text-fill-color: #212121;
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-    transition: background-color 5000s ease-in-out 0s;
-  }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        border: 1px solid #212121;
+        -webkit-text-fill-color: #212121;
+        -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+        transition: background-color 5000s ease-in-out 0s;
+    }
 
-  input[type="search"]::-webkit-search-decoration,
-  input[type="search"]::-webkit-search-cancel-button,
-  input[type="search"]::-webkit-search-results-button,
-  input[type="search"]::-webkit-search-results-decoration {
-    -webkit-appearance: none;
-  }
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+    }
 }
 
 @layer components {
-  .content-container {
-    @apply max-w-[1440px] w-full mx-auto px-6;
-  }
+    .content-container {
+        @apply max-w-[1440px] w-full mx-auto px-6;
+    }
 
-  .contrast-btn {
-    @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
-  }
+    .contrast-btn {
+        @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
+    }
 
-  .text-xsmall-regular {
-    @apply text-[10px] leading-4 font-normal;
-  }
+    /* Primary Button - Space Indigo */
+    .btn-primary {
+        @apply px-4 py-2 bg-space_indigo text-white rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-space_indigo-600 focus:outline-none focus:ring-2 focus:ring-space_indigo-500 focus:ring-offset-2 active:bg-space_indigo-700;
+    }
 
-  .text-small-regular {
-    @apply text-xs leading-5 font-normal;
-  }
+    /* Secondary Button - Dusty Grape */
+    .btn-secondary {
+        @apply px-4 py-2 bg-dusty_grape text-white rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-dusty_grape-600 focus:outline-none focus:ring-2 focus:ring-dusty_grape-500 focus:ring-offset-2 active:bg-dusty_grape-700;
+    }
 
-  .text-small-semi {
-    @apply text-xs leading-5 font-semibold;
-  }
+    /* Outline Button - Space Indigo */
+    .btn-outline {
+        @apply px-4 py-2 border-2 border-space_indigo text-space_indigo bg-transparent rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-space_indigo hover:text-white focus:outline-none focus:ring-2 focus:ring-space_indigo-500 focus:ring-offset-2;
+    }
 
-  .text-base-regular {
-    @apply text-sm leading-6 font-normal;
-  }
+    /* Ghost Button - Lilac Ash */
+    .btn-ghost {
+        @apply px-4 py-2 text-lilac_ash bg-transparent rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-lilac_ash-100 hover:text-lilac_ash-600 focus:outline-none focus:ring-2 focus:ring-lilac_ash-300 focus:ring-offset-2;
+    }
 
-  .text-base-semi {
-    @apply text-sm leading-6 font-semibold;
-  }
+    /* Soft Button - Almond Silk */
+    .btn-soft {
+        @apply px-4 py-2 bg-almond_silk-200 text-almond_silk-800 rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-almond_silk-300 focus:outline-none focus:ring-2 focus:ring-almond_silk-400 focus:ring-offset-2 active:bg-almond_silk-400;
+    }
 
-  .text-large-regular {
-    @apply text-base leading-6 font-normal;
-  }
+    /* Light Button - Parchment */
+    .btn-light {
+        @apply px-4 py-2 bg-parchment text-space_indigo rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-parchment-600 focus:outline-none focus:ring-2 focus:ring-parchment-400 focus:ring-offset-2 active:bg-parchment-700;
+    }
 
-  .text-large-semi {
-    @apply text-base leading-6 font-semibold;
-  }
+    /* Button Size Variants */
+    .btn-sm {
+        @apply px-3 py-1.5 text-sm;
+    }
 
-  .text-xl-regular {
-    @apply text-2xl leading-[36px] font-normal;
-  }
+    .btn-lg {
+        @apply px-6 py-3 text-lg;
+    }
 
-  .text-xl-semi {
-    @apply text-2xl leading-[36px] font-semibold;
-  }
+    .btn-xl {
+        @apply px-8 py-4 text-xl;
+    }
 
-  .text-2xl-regular {
-    @apply text-[30px] leading-[48px] font-normal;
-  }
+    /* Disabled State */
+    .btn-disabled {
+        @apply opacity-50 cursor-not-allowed pointer-events-none;
+    }
 
-  .text-2xl-semi {
-    @apply text-[30px] leading-[48px] font-semibold;
-  }
+    .text-xsmall-regular {
+        @apply text-[10px] leading-4 font-normal;
+    }
 
-  .text-3xl-regular {
-    @apply text-[32px] leading-[44px] font-normal;
-  }
+    .text-small-regular {
+        @apply text-xs leading-5 font-normal;
+    }
 
-  .text-3xl-semi {
-    @apply text-[32px] leading-[44px] font-semibold;
-  }
+    .text-small-semi {
+        @apply text-xs leading-5 font-semibold;
+    }
+
+    .text-base-regular {
+        @apply text-sm leading-6 font-normal;
+    }
+
+    .text-base-semi {
+        @apply text-sm leading-6 font-semibold;
+    }
+
+    .text-large-regular {
+        @apply text-base leading-6 font-normal;
+    }
+
+    .text-large-semi {
+        @apply text-base leading-6 font-semibold;
+    }
+
+    .text-xl-regular {
+        @apply text-2xl leading-[36px] font-normal;
+    }
+
+    .text-xl-semi {
+        @apply text-2xl leading-[36px] font-semibold;
+    }
+
+    .text-2xl-regular {
+        @apply text-[30px] leading-[48px] font-normal;
+    }
+
+    .text-2xl-semi {
+        @apply text-[30px] leading-[48px] font-semibold;
+    }
+
+    .text-3xl-regular {
+        @apply text-[32px] leading-[44px] font-normal;
+    }
+
+    .text-3xl-semi {
+        @apply text-[32px] leading-[44px] font-semibold;
+    }
 }
