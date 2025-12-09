@@ -58,7 +58,16 @@
         @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
     }
 
+    /* Override MedusaJS UI Button Primary Variant */
+    button[data-variant="primary"],
+    .bg-ui-button-inverted,
+    .bg-ui-button-inverted-pressed,
+    .ui-button-primary {
+        @apply bg-space_indigo text-white hover:bg-space_indigo-600 focus:bg-space_indigo-600 active:bg-space_indigo-700 !important;
+    }
+
     /* Primary Button - Space Indigo */
+
     .btn-primary {
         @apply px-4 py-2 bg-space_indigo text-white rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-space_indigo-600 focus:outline-none focus:ring-2 focus:ring-space_indigo-500 focus:ring-offset-2 active:bg-space_indigo-700;
     }
