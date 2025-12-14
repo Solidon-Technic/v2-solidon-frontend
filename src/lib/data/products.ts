@@ -12,11 +12,15 @@ export const listProducts = async ({
     queryParams,
     countryCode,
     regionId,
+    customFields,
+    brandIds,
 }: {
     pageParam?: number;
     queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductListParams;
     countryCode?: string;
     regionId?: string;
+    customFields?: string[];
+    brandIds?: string[];
 }): Promise<{
     response: { products: HttpTypes.StoreProduct[]; count: number };
     nextPage: number | null;
@@ -53,18 +57,35 @@ export const listProducts = async ({
         ...(await getCacheOptions("products")),
     };
 
+    const defaultFields = "*variants.calculated_price,+variants.inventory_quantity,+variants.manage_inventory,*variants.images,+metadata,+tags,";
+    const fields = customFields 
+        ? `${defaultFields}${customFields.join(",")},`
+        : defaultFields;
+
+    // Use custom endpoint if filtering by brands
+    const endpoint = brandIds && brandIds.length > 0 
+        ? `/custom/products-with-brands`
+        : `/store/products`;
+
+    const queryObj: any = {
+        limit,
+        offset,
+        region_id: region?.id,
+        fields,
+        ...queryParams,
+    };
+
+    // Add brand_ids if filtering by brands
+    if (brandIds && brandIds.length > 0) {
+        queryObj.brand_ids = brandIds.join(',');
+    }
+
     return sdk.client
         .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
-            `/store/products`,
+            endpoint,
             {
                 method: "GET",
-                query: {
-                    limit,
-                    offset,
-                    region_id: region?.id,
-                    fields: "*variants.calculated_price,+variants.inventory_quantity,*variants.images,+metadata,+tags,",
-                    ...queryParams,
-                },
+                query: queryObj,
                 headers,
                 next,
                 // Ensure fresh pricing after backend changes (prices/regions)
@@ -94,11 +115,15 @@ export const listProductsWithSort = async ({
     queryParams,
     sortBy = "created_at",
     countryCode,
+    fields,
+    brandIds,
 }: {
     page?: number;
     queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams;
     sortBy?: SortOptions;
     countryCode: string;
+    fields?: string[];
+    brandIds?: string[];
 }): Promise<{
     response: { products: HttpTypes.StoreProduct[]; count: number };
     nextPage: number | null;
@@ -115,6 +140,8 @@ export const listProductsWithSort = async ({
             limit: 100,
         },
         countryCode,
+        customFields: fields,
+        brandIds,
     });
 
     const sortedProducts = sortProducts(products, sortBy);
