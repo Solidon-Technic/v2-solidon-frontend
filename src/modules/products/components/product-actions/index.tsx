@@ -39,6 +39,10 @@ export default function ProductActions({
   const [options, setOptions] = useState<Record<string, string | undefined>>({})
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
+  const vIdFromQuery = useMemo(
+    () => searchParams.get("v_id"),
+    [searchParams]
+  )
 
   // If there is only 1 variant, preselect the options
   useEffect(() => {
@@ -47,6 +51,29 @@ export default function ProductActions({
       setOptions(variantOptions ?? {})
     }
   }, [product.variants])
+
+  // On first load, preselect a variant (prefer URL v_id, otherwise a random variant)
+  useEffect(() => {
+    if (!product.variants?.length) return
+    if (Object.keys(options).length > 0) return
+
+    const pickableVariants = product.variants
+    let initialVariant =
+      vIdFromQuery &&
+      pickableVariants.find(
+        (v) => v.id === vIdFromQuery || v.sku === vIdFromQuery
+      )
+
+    if (!initialVariant) {
+      const randomIndex = Math.floor(Math.random() * pickableVariants.length)
+      initialVariant = pickableVariants[randomIndex]
+    }
+
+    if (initialVariant?.options?.length) {
+      const variantOptions = optionsAsKeymap(initialVariant.options)
+      setOptions(variantOptions ?? {})
+    }
+  }, [product.variants, options, vIdFromQuery])
 
   const selectedVariant = useMemo(() => {
     if (!product.variants || product.variants.length === 0) {

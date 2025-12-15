@@ -166,4 +166,38 @@
     .text-3xl-semi {
         @apply text-[32px] leading-[44px] font-semibold;
     }
+
+    /* Product Card Styles */
+    .product-card {
+        @apply relative bg-white rounded-lg overflow-hidden transition-all duration-200 hover:shadow-lg;
+    }
+
+    .product-card-sale-badge {
+        @apply absolute top-2 left-2 bg-sales text-white text-xs font-bold px-3 py-1 rounded-sm z-10;
+    }
+
+    .product-card-genius-badge {
+        @apply absolute top-2 left-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white text-xs font-bold px-3 py-1 rounded-sm z-10;
+    }
+
+    .product-card-favorite {
+        @apply absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors z-10;
+    }
+
+    /* Carousel Navigation */
+    .carousel-nav-btn {
+        @apply absolute top-1/2 -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all z-20 hover:scale-110 active:scale-95;
+    }
+
+    .carousel-dots {
+        @apply flex justify-center gap-2 mt-4;
+    }
+
+    .carousel-dot {
+        @apply w-2 h-2 rounded-full bg-gray-300 transition-colors cursor-pointer hover:bg-gray-400;
+    }
+
+    .carousel-dot-active {
+        @apply bg-space_indigo w-8;
+    }
 }
