@@ -1,17 +1,22 @@
 import { sdk } from "@lib/config";
 import { HttpTypes } from "@medusajs/types";
-import { cache } from "react";
+import { getCacheOptions } from "./cookies";
 
-export const listBrands = cache(async function (query?: {
-    offset?: number;
-    limit?: number;
-}): Promise<HttpTypes.StoreProductCategoryListResponse> {
-    return await sdk.client.fetch<any>(`/store/brands`, {
-        method: "GET",
-        query: {
-            offset: query?.offset ?? 0,
-            limit: query?.limit ?? 100,
-        },
-        cache: "force-cache",
-    });
-});
+export const listBrands = async (query?: Record<string, any>) => {
+    const next = {
+        ...(await getCacheOptions("brands")),
+    };
+
+    const limit = query?.limit || 100;
+
+    return sdk.client
+        .fetch<{ brands: any[] }>("/store/brands", {
+            query: {
+                limit,
+                ...query,
+            },
+            next,
+            cache: "force-cache",
+        })
+        .then(({ brands }) => brands);
+};

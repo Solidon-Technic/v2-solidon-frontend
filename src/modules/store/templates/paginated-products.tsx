@@ -102,6 +102,11 @@ export default async function PaginatedProducts({
         brandIds: brands && brands.length > 0 ? brands : undefined,
     });
 
+    // Track if client-side filtering is active
+    const hasClientSideFilters =
+        (priceRange && priceRange !== "all") ||
+        (availability && availability !== "all");
+
     // Client-side filtering for price range (since Medusa API doesn't support direct price filtering)
     if (priceRange && priceRange !== "all") {
         products = products.filter((product) => {
@@ -128,7 +133,6 @@ export default async function PaginatedProducts({
 
             return true;
         });
-        count = products.length;
     }
 
     // Client-side filtering for availability
@@ -151,10 +155,13 @@ export default async function PaginatedProducts({
 
             return true;
         });
-        count = products.length;
     }
 
-    const totalPages = Math.ceil(count / PRODUCT_LIMIT);
+    // Only calculate pagination from server count when no client-side filters are active
+    // Client-side filtering breaks pagination since we only have one page of results
+    const totalPages = hasClientSideFilters
+        ? 1
+        : Math.ceil(count / PRODUCT_LIMIT);
 
     return (
         <>

@@ -64,7 +64,7 @@ export default async function CollectionTemplate({
                 selectedCollections={selectedCollections}
                 productTypes={allProductTypes}
                 selectedTypes={selectedTypes}
-                brands={allBrands.brands || []}
+                brands={allBrands}
                 selectedBrands={selectedBrands}
                 priceRange={price}
                 searchQuery={query}
