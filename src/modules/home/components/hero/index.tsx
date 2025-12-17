@@ -1,32 +1,43 @@
 import { Github } from "@medusajs/icons"
 import { Button, Heading } from "@medusajs/ui"
+import Image from "next/image"
 
 const Hero = () => {
   return (
-    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
+    <div className="h-[75vh] w-full border-b border-ui-border-base relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/villa.png"
+          alt="Villa background"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+
+      {/* Content */}
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
         <span>
           <Heading
             level="h1"
-            className="text-3xl leading-10 text-ui-fg-base font-normal"
+            className="text-3xl leading-10 text-white font-normal drop-shadow-lg"
           >
-            Ecommerce Starter Template
+            Solidon termopane
           </Heading>
           <Heading
             level="h2"
-            className="text-3xl leading-10 text-ui-fg-subtle font-normal"
+            className="text-3xl leading-10 text-white/90 font-normal drop-shadow-lg"
           >
-            Powered by Medusa and Next.js
+            Cele mai bune accessorii pentru casa ta.
           </Heading>
         </span>
         <a
-          href="https://github.com/medusajs/nextjs-starter-medusa"
+          href="https://www.solidon.ro"
           target="_blank"
         >
-          <Button variant="secondary">
-            View on GitHub
-            <Github />
-          </Button>
         </a>
       </div>
     </div>
