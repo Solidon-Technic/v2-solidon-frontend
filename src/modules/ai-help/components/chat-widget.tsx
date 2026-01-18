@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, useId } from "react"
+import { getChatGreeting, sendChatMessage } from "@lib/data/chatbot"
 
 type Message = {
   id: string
@@ -13,9 +14,33 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [hasGreeted, setHasGreeted] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const sessionId = useId()
+
+  // Fetch greeting when chatbot opens for the first time
+  useEffect(() => {
+    if (isOpen && !hasGreeted) {
+      setIsLoading(true)
+      getChatGreeting()
+        .then((response) => {
+          const greetingMessage: Message = {
+            id: `${sessionId}-greeting`,
+            role: "assistant",
+            content: response.message.content,
+          }
+          setMessages([greetingMessage])
+          setHasGreeted(true)
+        })
+        .catch(() => {
+          // Silently fail - user can still chat
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
+    }
+  }, [isOpen, hasGreeted, sessionId])
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -27,7 +52,7 @@ export default function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim() || isLoading) return
 
@@ -37,21 +62,38 @@ export default function ChatWidget() {
       content: input.trim(),
     }
 
-    setMessages((prev) => [...prev, userMessage])
+    const updatedMessages = [...messages, userMessage]
+    setMessages(updatedMessages)
     setInput("")
     setIsLoading(true)
 
-    // Placeholder assistant response (backend not wired yet)
-    setTimeout(() => {
+    try {
+      // Filter out the greeting message for API calls
+      const chatMessages = updatedMessages
+        .filter((m) => m.id !== `${sessionId}-greeting`)
+        .map((m) => ({
+          role: m.role,
+          content: m.content,
+        }))
+
+      const response = await sendChatMessage(chatMessages)
+
       const assistantMessage: Message = {
         id: `${sessionId}-${Date.now()}-assistant`,
         role: "assistant",
-        content:
-          "Thanks for your message! The AI assistant is not connected yet. This is a placeholder response.",
+        content: response.message.content,
       }
       setMessages((prev) => [...prev, assistantMessage])
+    } catch (error) {
+      const errorMessage: Message = {
+        id: `${sessionId}-${Date.now()}-error`,
+        role: "assistant",
+        content: "Sorry, something went wrong. Please try again.",
+      }
+      setMessages((prev) => [...prev, errorMessage])
+    } finally {
       setIsLoading(false)
-    }, 800)
+    }
   }
 
   return (
@@ -75,8 +117,8 @@ export default function ChatWidget() {
       {/* Chat popup */}
       <div
         className={`fixed bottom-24 right-6 z-50 flex w-[360px] flex-col overflow-hidden rounded-xl bg-white shadow-2xl transition-all duration-300 ${isOpen
-            ? "pointer-events-auto scale-100 opacity-100"
-            : "pointer-events-none scale-95 opacity-0"
+          ? "pointer-events-auto scale-100 opacity-100"
+          : "pointer-events-none scale-95 opacity-0"
           }`}
         style={{ height: "500px" }}
       >
@@ -105,8 +147,8 @@ export default function ChatWidget() {
                 >
                   <div
                     className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${message.role === "user"
-                        ? "bg-space_indigo text-white"
-                        : "bg-white text-grey-80 shadow-sm"
+                      ? "bg-space_indigo text-white"
+                      : "bg-white text-grey-80 shadow-sm"
                       }`}
                   >
                     {message.content}
