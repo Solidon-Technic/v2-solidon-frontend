@@ -25,14 +25,6 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
                 >
                     {product.title}
                 </Heading>
-
-                <div
-                    className="text-medium text-ui-fg-subtle prose prose-sm max-w-none"
-                    data-testid="product-description"
-                    dangerouslySetInnerHTML={{
-                        __html: product.description || "",
-                    }}
-                />
             </div>
         </div>
     );
