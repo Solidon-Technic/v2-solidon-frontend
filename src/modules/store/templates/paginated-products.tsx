@@ -21,6 +21,7 @@ export default async function PaginatedProducts({
   categoryId,
   productsIds,
   countryCode,
+  searchQuery,
 }: {
   sortBy?: SortOptions
   page: number
@@ -28,6 +29,7 @@ export default async function PaginatedProducts({
   categoryId?: string
   productsIds?: string[]
   countryCode: string
+  searchQuery?: string
 }) {
   const queryParams: PaginatedProductsParams = {
     limit: 12,
@@ -49,6 +51,10 @@ export default async function PaginatedProducts({
     queryParams["order"] = "created_at"
   }
 
+  if (searchQuery) {
+    ;(queryParams as any)["q"] = searchQuery
+  }
+
   const region = await getRegion(countryCode)
 
   if (!region) {
@@ -65,6 +71,14 @@ export default async function PaginatedProducts({
   })
 
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)
+
+  if (products.length === 0 && searchQuery) {
+    return (
+      <p className="text-gray-500 py-10 text-center">
+        Nu am găsit produse pentru &quot;{searchQuery}&quot;.
+      </p>
+    )
+  }
 
   return (
     <>

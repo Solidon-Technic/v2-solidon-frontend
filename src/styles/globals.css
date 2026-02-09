@@ -200,4 +200,33 @@
     .carousel-dot-active {
         @apply bg-space_indigo w-8;
     }
+
+    /* eMAG-style Header */
+    .nav-header {
+        @apply shadow-md;
+    }
+
+    /* Navigation Tabs Row */
+    .nav-tabs {
+        @apply shadow-sm;
+    }
+
+    /* Category Sidebar */
+    .category-sidebar {
+        @apply shadow-sm;
+    }
+
+    .category-sidebar ul li:not(:last-child) {
+        @apply border-b border-gray-100;
+    }
+
+    /* Category Shop Cards */
+    .category-shop-card {
+        @apply block cursor-pointer;
+    }
+
+    .category-shop-card:hover {
+        @apply shadow-md;
+        border-radius: 8px;
+    }
 }

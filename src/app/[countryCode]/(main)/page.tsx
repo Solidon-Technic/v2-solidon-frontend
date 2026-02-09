@@ -21,7 +21,7 @@ export default async function Home(props: {
 
   const categories = await listCategories({
     limit: 10,
-    fields: "id, name, handle",
+    fields: "id, name, handle, metadata, *parent_category",
   })
 
   if (!region) {
