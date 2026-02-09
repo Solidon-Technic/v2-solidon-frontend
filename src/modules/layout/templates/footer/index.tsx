@@ -27,7 +27,7 @@ export default async function Footer() {
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
+                  Categorii
                 </span>
                 <ul
                   className="grid grid-cols-1 gap-2"
@@ -85,7 +85,7 @@ export default async function Footer() {
             {collections && collections.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
+                  Colecții
                 </span>
                 <ul
                   className={clx(
@@ -109,14 +109,14 @@ export default async function Footer() {
               </div>
             )}
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">About</span>
+              <span className="txt-small-plus txt-ui-fg-base">Despre</span>
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
                   <LocalizedClientLink
                     href="/about"
                     className="hover:text-ui-fg-base"
                   >
-                    About Us
+                    Despre noi
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -124,7 +124,7 @@ export default async function Footer() {
                     href="/contact"
                     className="hover:text-ui-fg-base"
                   >
-                    Contact
+                    Contact informații
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -132,7 +132,7 @@ export default async function Footer() {
                     href="/terms"
                     className="hover:text-ui-fg-base"
                   >
-                    Terms & Conditions
+                    Termeni și condiții
                   </LocalizedClientLink>
                 </li>
               </ul>
@@ -141,7 +141,7 @@ export default async function Footer() {
         </div>
         <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Solidon. All rights reserved.
+            © {new Date().getFullYear()} Solidon. Toate drepturile rezervate.
           </Text>
           <MedusaCTA />
         </div>

@@ -88,7 +88,7 @@ export default function ChatWidget() {
       const errorMessage: Message = {
         id: `${sessionId}-${Date.now()}-error`,
         role: "assistant",
-        content: "Sorry, something went wrong. Please try again.",
+        content: "Ne pare rău, ceva nu a funcționat. Te rugăm să încerci din nou.",
       }
       setMessages((prev) => [...prev, errorMessage])
     } finally {
@@ -101,7 +101,7 @@ export default function ChatWidget() {
       {/* Floating trigger button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close AI Help" : "Open AI Help"}
+        aria-label={isOpen ? "Închide Asistent AI" : "Deschide Asistent AI"}
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-space_indigo px-5 py-3 text-white shadow-lg transition-all duration-300 hover:bg-space_indigo-600 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-space_indigo-500 focus:ring-offset-2"
       >
         {isOpen ? (
@@ -109,7 +109,7 @@ export default function ChatWidget() {
         ) : (
           <>
             <SparklesIcon />
-            <span className="text-sm font-medium">AI Help</span>
+            <span className="text-sm font-medium">Asistent AI</span>
           </>
         )}
       </button>
@@ -126,8 +126,8 @@ export default function ChatWidget() {
         <div className="flex items-center gap-3 bg-space_indigo px-4 py-3 text-white">
           <SparklesIcon />
           <div>
-            <h2 className="text-sm font-semibold">AI Help</h2>
-            <p className="text-xs text-space_indigo-800">Ask me anything</p>
+            <h2 className="text-sm font-semibold">Asistent AI</h2>
+            <p className="text-xs text-space_indigo-800">Întreabă-mă orice</p>
           </div>
         </div>
 
@@ -136,7 +136,7 @@ export default function ChatWidget() {
           {messages.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center text-dusty_grape">
               <SparklesIcon className="mb-3 h-10 w-10 opacity-50" />
-              <p className="text-sm">How can I help you today?</p>
+              <p className="text-sm">Cu ce te pot ajuta astăzi?</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -179,7 +179,7 @@ export default function ChatWidget() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
+            placeholder="Scrie mesajul tău..."
             className="flex-1 rounded-lg border border-grey-20 px-3 py-2 text-sm text-grey-80 placeholder:text-grey-40 focus:border-space_indigo focus:outline-none focus:ring-1 focus:ring-space_indigo"
           />
           <button

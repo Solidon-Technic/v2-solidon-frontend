@@ -37,11 +37,11 @@ export default async function SmartDealsSection({
         <section className="py-8 relative">
             {/* Section Header - Centered with red text */}
             <div className="flex items-center justify-center mb-6 relative">
-                <h2 className="text-3xl font-bold text-sales">Smart Deals</h2>
+                <h2 className="text-3xl font-bold text-sales">Oferte Smart</h2>
                 <LocalizedClientLink
                     href="/store"
                     className="absolute right-0 text-lg font-semibold text-sales hover:underline flex items-center gap-1"
-                    aria-label="View all smart deals"
+                    aria-label="Vezi toate ofertele smart"
                 >
                     <ChevronRight className="w-5 h-5" />
                 </LocalizedClientLink>

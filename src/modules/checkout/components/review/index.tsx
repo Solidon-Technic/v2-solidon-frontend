@@ -30,7 +30,7 @@ const Review = ({ cart }: { cart: any }) => {
             }
           )}
         >
-          Review
+          Verificare
         </Heading>
       </div>
       {isOpen && previousStepsCompleted && (
@@ -38,10 +38,10 @@ const Review = ({ cart }: { cart: any }) => {
           <div className="flex items-start gap-x-1 w-full mb-6">
             <div className="w-full">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                By clicking the Place Order button, you confirm that you have
-                read, understand and accept our Terms of Use, Terms of Sale and
-                Returns Policy and acknowledge that you have read Solidon&apos;s
-                Privacy Policy.
+                Făcând clic pe butonul Plasează comanda, confirmi că ai citit,
+                înțeles și acceptat Termenii de utilizare, Termenii de vânzare și
+                Politica de retururi și recunoști că ai citit Politica de
+                confidențialitate Solidon.
               </Text>
             </div>
           </div>

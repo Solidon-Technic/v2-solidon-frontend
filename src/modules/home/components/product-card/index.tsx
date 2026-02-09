@@ -35,7 +35,7 @@ export default function ProductCard({
                     <div className="product-card-genius-badge">genius</div>
                 )}
                 {!geniusDeal && hasDiscount && showBadge && (
-                    <div className="product-card-sale-badge">Smart Deals</div>
+                    <div className="product-card-sale-badge">Oferte Smart</div>
                 )}
 
                 {/* Favorite Button */}
@@ -45,7 +45,7 @@ export default function ProductCard({
                         e.preventDefault();
                         // TODO: Implement wishlist functionality
                     }}
-                    aria-label="Add to favorites"
+                    aria-label="Adaugă la favorite"
                 >
                     <Heart className="w-4 h-4 text-gray-600" />
                 </button>
