@@ -59,11 +59,9 @@ export default async function SmartDealsSection({
                         key={product.id}
                         product={product}
                         showBadge={true}
-                        geniusDeal={false}
                     />
                 ))}
             </ResponsiveCarousel>
         </section>
     );
 }
-

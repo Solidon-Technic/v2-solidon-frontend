@@ -11,7 +11,6 @@ type CategorySectionProps = {
     collectionId?: string;
     region: HttpTypes.StoreRegion;
     showSaleBadge?: boolean;
-    geniusDeal?: boolean;
     href?: string;
     isSmartDeals?: boolean;
 };
@@ -22,7 +21,6 @@ export default async function CategorySection({
     collectionId,
     region,
     showSaleBadge = false,
-    geniusDeal = false,
     href,
     isSmartDeals = false,
 }: CategorySectionProps) {
@@ -100,11 +98,9 @@ export default async function CategorySection({
                         key={product.id}
                         product={product}
                         showBadge={showSaleBadge}
-                        geniusDeal={geniusDeal}
                     />
                 ))}
             </ResponsiveCarousel>
         </section>
     );
 }
-

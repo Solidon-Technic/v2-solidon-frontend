@@ -10,13 +10,11 @@ import { clx } from "@medusajs/ui";
 type ProductCardProps = {
     product: HttpTypes.StoreProduct;
     showBadge?: boolean;
-    geniusDeal?: boolean;
 };
 
 export default function ProductCard({
     product,
     showBadge = false,
-    geniusDeal = false,
 }: ProductCardProps) {
     const { cheapestPrice } = getProductPrice({ product });
 
@@ -31,11 +29,8 @@ export default function ProductCard({
                 className="block"
             >
                 {/* Badge Section */}
-                {geniusDeal && (
-                    <div className="product-card-genius-badge">genius</div>
-                )}
-                {!geniusDeal && hasDiscount && showBadge && (
-                    <div className="product-card-sale-badge">Smart Deals</div>
+                {hasDiscount && showBadge && (
+                    <div className="product-card-sale-badge">Sale</div>
                 )}
 
                 {/* Favorite Button */}
@@ -121,4 +116,3 @@ export default function ProductCard({
         </div>
     );
 }
-

@@ -29,7 +29,7 @@ export default function HomepageTemplate({
                         title={category.name}
                         categoryId={category.id}
                         region={region}
-                        geniusDeal={true}
+                        showSaleBadge={true}
                         href={`/categories/${category.handle}`}
                     />
                 ))}
@@ -37,4 +37,3 @@ export default function HomepageTemplate({
         </div>
     );
 }
-

@@ -176,10 +176,6 @@
         @apply absolute top-2 left-2 bg-sales text-white text-xs font-bold px-3 py-1 rounded-sm z-10;
     }
 
-    .product-card-genius-badge {
-        @apply absolute top-2 left-2 bg-gradient-to-r from-purple-600 to-purple-800 text-white text-xs font-bold px-3 py-1 rounded-sm z-10;
-    }
-
     .product-card-favorite {
         @apply absolute top-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors z-10;
     }
