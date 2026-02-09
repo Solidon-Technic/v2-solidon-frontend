@@ -33,50 +33,13 @@ const nextConfig = {
             },
             {
                 protocol: "https",
-                hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
+                hostname: "**",
             },
-            {
-                protocol: "https",
-                hostname: "medusa-server-testing.s3.amazonaws.com",
-            },
-            {
-                protocol: "https",
-                hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
-            },
-            {
-                protocol: "https",
-                hostname: "upload.cdn.baselinker.com",
-            },
-            {
-                protocol: "https",
-                hostname: "*.akamaized.net",
-            },
-            {
-                protocol: "https",
-                hostname: "marketplace-static.emag.ro",
-            },
-            {
-                protocol: "https",
-                hostname: "content-static.emag.net",
-            },
-            {
-                protocol: "https",
-                hostname: "*.emag.ro",
-            },
-            {
-                protocol: "https",
-                hostname: "*.emag.net",
-            },
-            ...(S3_HOSTNAME && S3_PATHNAME
-                ? [
-                      {
-                          protocol: "https",
-                          hostname: S3_HOSTNAME,
-                          pathname: S3_PATHNAME,
-                      },
-                  ]
-                : []),
         ],
+        dangerouslyAllowSVG: true,
+        contentDispositionType: "attachment",
+        minimumCacheTTL: 60,
+        unoptimized: false,
     },
 };
 
