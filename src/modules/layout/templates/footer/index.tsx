@@ -3,7 +3,9 @@ import { listCollections } from "@lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import StoreLogo from "@modules/common/components/store-logo"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
+import BackToTop from "@modules/layout/components/back-to-top"
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -14,13 +16,14 @@ export default async function Footer() {
   return (
     <footer className="border-t border-ui-border-base w-full">
       <div className="content-container flex flex-col w-full">
+        <BackToTop />
         <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
           <div>
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+              className="inline-flex items-center hover:opacity-90 transition-opacity"
             >
-              Solidon
+              <StoreLogo width={120} height={40} />
             </LocalizedClientLink>
           </div>
           <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">

@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 
 import { listCategories } from "@lib/data/categories"
+import { getLandingPageConfig } from "@lib/data/landing-page"
 import { getRegion } from "@lib/data/regions"
 import HomepageTemplate from "@modules/home/templates/homepage"
 
@@ -17,16 +18,24 @@ export default async function Home(props: {
 
   const { countryCode } = params
 
-  const region = await getRegion(countryCode)
-
-  const categories = await listCategories({
-    limit: 10,
-    fields: "id, name, handle, metadata, *parent_category",
-  })
+  const [region, categories, landingConfig] = await Promise.all([
+    getRegion(countryCode),
+    listCategories({
+      limit: 100,
+      fields: "id, name, handle, metadata, *parent_category",
+    }),
+    getLandingPageConfig(),
+  ])
 
   if (!region) {
     return null
   }
 
-  return <HomepageTemplate region={region} categories={categories || []} />
+  return (
+    <HomepageTemplate
+      region={region}
+      categories={categories || []}
+      landingConfig={landingConfig}
+    />
+  )
 }

@@ -10,6 +10,8 @@ type PaginatedProductsParams = {
   limit: number
   collection_id?: string[]
   category_id?: string[]
+  tag_id?: string[]
+  type_id?: string[]
   id?: string[]
   order?: string
 }
@@ -17,34 +19,56 @@ type PaginatedProductsParams = {
 export default async function PaginatedProducts({
   sortBy,
   page,
-  collectionId,
-  categoryId,
+  collectionIds,
+  categoryIds,
+  tagIds,
+  typeIds,
   productsIds,
   countryCode,
   searchQuery,
+  priceRanges,
+  priceMin,
+  priceMax,
+  useCustomPriceInterval,
+  inStockOnly,
 }: {
   sortBy?: SortOptions
   page: number
-  collectionId?: string
-  categoryId?: string
+  collectionIds?: string[]
+  categoryIds?: string[]
+  tagIds?: string[]
+  typeIds?: string[]
   productsIds?: string[]
   countryCode: string
   searchQuery?: string
+  priceRanges?: string[]
+  priceMin?: number
+  priceMax?: number
+  useCustomPriceInterval?: boolean
+  inStockOnly?: boolean
 }) {
   const queryParams: PaginatedProductsParams = {
     limit: 12,
   }
 
-  if (collectionId) {
-    queryParams["collection_id"] = [collectionId]
+  if (collectionIds?.length) {
+    queryParams["collection_id"] = collectionIds
   }
 
-  if (categoryId) {
-    queryParams["category_id"] = [categoryId]
+  if (categoryIds?.length) {
+    queryParams["category_id"] = categoryIds
   }
 
-  if (productsIds) {
+  if (productsIds?.length) {
     queryParams["id"] = productsIds
+  }
+
+  if (tagIds?.length) {
+    queryParams["tag_id"] = tagIds
+  }
+
+  if (typeIds?.length) {
+    queryParams["type_id"] = typeIds
   }
 
   if (sortBy === "created_at") {
@@ -68,6 +92,11 @@ export default async function PaginatedProducts({
     queryParams,
     sortBy,
     countryCode,
+    priceRanges,
+    priceMin,
+    priceMax,
+    useCustomPriceInterval,
+    inStockOnly,
   })
 
   const totalPages = Math.ceil(count / PRODUCT_LIMIT)

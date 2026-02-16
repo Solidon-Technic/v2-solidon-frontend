@@ -2,6 +2,65 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Industrial palette CSS variables - WCAG AA compatible */
+:root {
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #1E3A8A;
+  --color-primary-600: #1e40af;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e3a8a;
+  --color-primary-900: #1e3a5f;
+  --color-primary-950: #0f172a;
+
+  --color-accent-50: #fff7ed;
+  --color-accent-100: #ffedd5;
+  --color-accent-200: #fed7aa;
+  --color-accent-300: #fdba74;
+  --color-accent-400: #fb923c;
+  --color-accent-500: #F97316;
+  --color-accent-600: #ea580c;
+  --color-accent-700: #c2410c;
+  --color-accent-800: #9a3412;
+  --color-accent-900: #7c2d12;
+  --color-accent-950: #431407;
+
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+  --color-neutral-950: #020617;
+}
+
+/* Hero Swiper pagination */
+.hero-swiper .swiper-pagination {
+  pointer-events: all !important;
+  z-index: 20;
+}
+.hero-swiper .swiper-pagination-bullet {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.hero-swiper .swiper-pagination-bullet-active {
+  width: 2rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: white;
+}
+
 @layer utilities {
     /* Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
@@ -58,18 +117,17 @@
         @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
     }
 
-    /* Override MedusaJS UI Button Primary Variant */
+    /* Override MedusaJS UI Button Primary Variant - CTA uses accent */
     button[data-variant="primary"],
     .bg-ui-button-inverted,
     .bg-ui-button-inverted-pressed,
     .ui-button-primary {
-        @apply bg-space_indigo text-white hover:bg-space_indigo-600 focus:bg-space_indigo-600 active:bg-space_indigo-700 !important;
+        @apply bg-accent-500 text-white hover:bg-accent-600 focus:bg-accent-600 active:bg-accent-700 transition-colors duration-200 !important;
     }
 
-    /* Primary Button - Space Indigo */
-
+    /* Primary CTA Button - Accent (industrial orange) */
     .btn-primary {
-        @apply px-4 py-2 bg-space_indigo text-white rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-space_indigo-600 focus:outline-none focus:ring-2 focus:ring-space_indigo-500 focus:ring-offset-2 active:bg-space_indigo-700;
+        @apply px-4 py-2 bg-accent-500 text-white rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 active:bg-accent-700;
     }
 
     /* Secondary Button - Dusty Grape */
@@ -77,9 +135,9 @@
         @apply px-4 py-2 bg-dusty_grape text-white rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-dusty_grape-600 focus:outline-none focus:ring-2 focus:ring-dusty_grape-500 focus:ring-offset-2 active:bg-dusty_grape-700;
     }
 
-    /* Outline Button - Space Indigo */
+    /* Outline Button - Primary */
     .btn-outline {
-        @apply px-4 py-2 border-2 border-space_indigo text-space_indigo bg-transparent rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-space_indigo hover:text-white focus:outline-none focus:ring-2 focus:ring-space_indigo-500 focus:ring-offset-2;
+        @apply px-4 py-2 border-2 border-primary-500 text-primary-500 bg-transparent rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-primary-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
     }
 
     /* Ghost Button - Lilac Ash */
@@ -94,7 +152,7 @@
 
     /* Light Button - Parchment */
     .btn-light {
-        @apply px-4 py-2 bg-parchment text-space_indigo rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-parchment-600 focus:outline-none focus:ring-2 focus:ring-parchment-400 focus:ring-offset-2 active:bg-parchment-700;
+        @apply px-4 py-2 bg-parchment text-primary-500 rounded-md font-medium transition-all duration-200 ease-in-out hover:bg-parchment-600 focus:outline-none focus:ring-2 focus:ring-parchment-400 focus:ring-offset-2 active:bg-parchment-700;
     }
 
     /* Button Size Variants */
@@ -186,7 +244,7 @@
 
     /* Carousel Navigation */
     .carousel-nav-btn {
-        @apply absolute top-1/2 -translate-y-1/2 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all z-20 hover:scale-110 active:scale-95;
+        @apply absolute top-1/2 -translate-y-1/2 w-10 h-10 min-w-10 min-h-10 bg-white rounded-full shadow-lg hover:shadow-xl transition-all z-20 hover:scale-110 active:scale-95 flex items-center justify-center;
     }
 
     .carousel-dots {
@@ -198,7 +256,30 @@
     }
 
     .carousel-dot-active {
-        @apply bg-space_indigo w-8;
+        @apply bg-primary-500 w-8;
+    }
+
+    /* Product Swiper (Swiper.js) - match carousel-dots */
+    .product-swiper-container {
+        overflow: visible;
+    }
+    .product-swiper {
+        overflow: hidden;
+    }
+    .product-swiper .swiper-wrapper {
+        align-items: stretch;
+    }
+    .product-swiper .swiper-slide {
+        height: auto;
+    }
+    .product-swiper .swiper-pagination {
+        @apply flex justify-center gap-2 mt-4 relative;
+    }
+    .product-swiper .swiper-pagination-bullet {
+        @apply w-2 h-2 rounded-full bg-gray-300 transition-all cursor-pointer hover:bg-gray-400;
+    }
+    .product-swiper .swiper-pagination-bullet-active {
+        @apply bg-primary-500 w-8;
     }
 
     /* eMAG-style Header */
