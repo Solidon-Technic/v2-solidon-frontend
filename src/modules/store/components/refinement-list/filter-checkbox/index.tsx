@@ -19,7 +19,7 @@ const FilterCheckbox = ({
   selectedIds,
   paramName,
   onToggle,
-  defaultOpen = true,
+  defaultOpen = false,
 }: FilterCheckboxProps) => {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 

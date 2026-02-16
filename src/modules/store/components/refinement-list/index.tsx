@@ -143,6 +143,7 @@ const RefinementList = ({
           selectedIds={collectionIds}
           paramName="collection"
           onToggle={setMultiFilter}
+          defaultOpen={false}
         />
         <FilterCheckbox
           title="Tag"
@@ -150,6 +151,7 @@ const RefinementList = ({
           selectedIds={tagIds}
           paramName="tag"
           onToggle={setMultiFilter}
+          defaultOpen={false}
         />
         <FilterCheckbox
           title="Tip produs"

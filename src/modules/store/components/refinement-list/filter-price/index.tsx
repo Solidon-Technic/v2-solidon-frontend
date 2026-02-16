@@ -38,7 +38,7 @@ const FilterPrice = ({
   onCustomIntervalChange,
   onUseCustomIntervalChange,
 }: FilterPriceProps) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [sliderValue, setSliderValue] = useState<[number, number]>([
     priceMin,
     priceMax,
