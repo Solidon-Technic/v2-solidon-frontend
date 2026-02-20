@@ -43,7 +43,7 @@ export default function HomepageTemplate({
       </div>
 
       {/* Category Shop Cards */}
-      <div className="content-container pb-6">
+      <div className="content-container py-8 pb-6">
         <CategoryCards categories={categories} />
       </div>
 

@@ -51,8 +51,8 @@ export default async function SmartDealsSection({
             <SwiperCarousel
                 breakpoints={{ mobile: 2, tablet: 3, desktop: 5 }}
                 gap={16}
-                showDots={true}
                 infiniteScroll={true}
+                variant="products"
             >
                 {discountedProducts.map((product) => (
                     <ProductPreview

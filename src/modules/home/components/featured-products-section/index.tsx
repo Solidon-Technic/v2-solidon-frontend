@@ -46,8 +46,8 @@ export default async function FeaturedProductsSection({
       <SwiperCarousel
         breakpoints={{ mobile: 2, tablet: 3, desktop: 5 }}
         gap={16}
-        showDots={true}
         infiniteScroll={true}
+        variant="products"
       >
         {products.map((product) => (
           <ProductPreview

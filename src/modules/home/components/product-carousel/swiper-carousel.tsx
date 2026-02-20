@@ -3,10 +3,8 @@
 import { useRef, ReactNode } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import type { Swiper as SwiperType } from "swiper"
-import { Pagination } from "swiper/modules"
 import { ChevronLeft, ChevronRight } from "@medusajs/icons"
 import "swiper/css"
-import "swiper/css/pagination"
 
 type SwiperCarouselProps = {
   children: ReactNode[]
@@ -18,14 +16,16 @@ type SwiperCarouselProps = {
   gap?: number
   showDots?: boolean
   infiniteScroll?: boolean
+  variant?: "products" | "categories"
 }
 
 export default function SwiperCarousel({
   children,
   breakpoints = { mobile: 2, tablet: 3, desktop: 5 },
   gap = 16,
-  showDots = true,
+  showDots = false,
   infiniteScroll = true,
+  variant = "categories",
 }: SwiperCarouselProps) {
   const swiperRef = useRef<SwiperType | null>(null)
 
@@ -40,7 +40,6 @@ export default function SwiperCarousel({
   }
 
   const showNav = children.length > 1
-  const showPagination = showDots && children.length > 1
   const useLoop = false
 
   const handlePrev = () => {
@@ -51,20 +50,22 @@ export default function SwiperCarousel({
     swiperRef.current?.slideNext()
   }
 
+  const wrapperClass = variant === "products" ? "px-24" : "px-10 max-w-7xl mx-auto"
+
   return (
-    <div className="relative product-swiper-container" role="region" aria-label="Product carousel">
+    <div className={wrapperClass} role="region" aria-label="Product carousel" data-swiper-variant={variant}>
+      <div className="relative product-swiper-container">
       <Swiper
         onSwiper={(swiper) => {
           swiperRef.current = swiper
         }}
-        modules={[Pagination]}
+        modules={[]}
         spaceBetween={gap}
         slidesPerView={mobile}
         slidesPerGroup={1}
         speed={300}
         loop={useLoop}
         breakpoints={swiperBreakpoints}
-        pagination={showPagination ? { clickable: true } : false}
         className="product-swiper"
       >
         {children.map((child, index) => (
@@ -77,21 +78,24 @@ export default function SwiperCarousel({
           <button
             type="button"
             onClick={handlePrev}
-            className="carousel-nav-btn left-0 -ml-4 z-30 focus:outline-none focus:ring-2 focus:ring-space_indigo"
+            className="product-swiper-nav-btn product-swiper-nav-prev"
             aria-label="Produse anterioare"
+            style={variant === "products" ? { left: "-5.5rem", marginLeft: 0 } : undefined}
           >
-            <ChevronLeft className="w-5 h-5 text-gray-700 shrink-0 block" />
+            <ChevronLeft className="product-swiper-nav-icon" />
           </button>
           <button
             type="button"
             onClick={handleNext}
-            className="carousel-nav-btn right-0 -mr-4 z-30 focus:outline-none focus:ring-2 focus:ring-space_indigo"
+            className="product-swiper-nav-btn product-swiper-nav-next"
             aria-label="Produse următoare"
+            style={variant === "products" ? { right: "-5.5rem", marginRight: 0, left: "auto" } : undefined}
           >
-            <ChevronRight className="w-5 h-5 text-gray-700 shrink-0 block" />
+            <ChevronRight className="product-swiper-nav-icon" />
           </button>
         </>
       )}
+      </div>
     </div>
   )
 }

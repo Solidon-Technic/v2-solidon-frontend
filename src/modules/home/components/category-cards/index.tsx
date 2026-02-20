@@ -70,7 +70,6 @@ const CategoryCards = ({ categories }: CategoryCardsProps) => {
     <SwiperCarousel
       breakpoints={{ mobile: 2, tablet: 3, desktop: 6 }}
       gap={12}
-      showDots={topLevel.length > 1}
       infiniteScroll={topLevel.length > 1}
     >
       {topLevel.map((category, index) => (

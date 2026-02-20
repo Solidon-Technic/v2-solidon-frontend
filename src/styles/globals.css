@@ -259,7 +259,7 @@
         @apply bg-primary-500 w-8;
     }
 
-    /* Product Swiper (Swiper.js) - match carousel-dots */
+    /* Product Swiper (Swiper.js) */
     .product-swiper-container {
         overflow: visible;
     }
@@ -272,14 +272,39 @@
     .product-swiper .swiper-slide {
         height: auto;
     }
-    .product-swiper .swiper-pagination {
-        @apply flex justify-center gap-2 mt-4 relative;
+
+    /* Product Swiper nav - arrows only, centered on image area (not text) */
+    .product-swiper-nav-btn {
+        @apply absolute top-[42%] -translate-y-1/2 z-30 flex items-center justify-center w-10 h-10 focus:outline-none;
     }
-    .product-swiper .swiper-pagination-bullet {
-        @apply w-2 h-2 rounded-full bg-gray-300 transition-all cursor-pointer hover:bg-gray-400;
+    .product-swiper-nav-prev {
+        left: 0;
+        margin-left: -2.5rem;
     }
-    .product-swiper .swiper-pagination-bullet-active {
-        @apply bg-primary-500 w-8;
+    .product-swiper-nav-next {
+        right: 0;
+        margin-right: -2.5rem;
+    }
+    .product-swiper-nav-icon {
+        @apply w-6 h-6 text-gray-500 shrink-0 transition-all duration-200;
+    }
+    .product-swiper-nav-btn:hover .product-swiper-nav-icon {
+        @apply text-gray-900 scale-125;
+    }
+    /* Larger arrows for product carousels - bigger + slightly more distant */
+    [data-swiper-variant="products"] .product-swiper-nav-btn {
+        @apply w-20 h-20;
+    }
+    /* Category carousel - arrows centered on image (full card is image) */
+    [data-swiper-variant="categories"] .product-swiper-nav-btn {
+        @apply top-1/2;
+    }
+    /* Product variant positioning: left/right via inline styles in component */
+    [data-swiper-variant="products"] .product-swiper-nav-icon {
+        @apply w-12 h-12;
+    }
+    [data-swiper-variant="products"] .product-swiper-nav-btn:hover .product-swiper-nav-icon {
+        @apply scale-125;
     }
 
     /* eMAG-style Header */
