@@ -1,7 +1,7 @@
 import { HttpTypes } from "@medusajs/types";
 import { listProducts } from "@lib/data/products";
-import ResponsiveCarousel from "../product-carousel/responsive";
-import ProductCard from "../product-card";
+import SwiperCarousel from "../product-carousel/swiper-carousel";
+import ProductPreview from "@modules/products/components/product-preview";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { ChevronRight } from "@medusajs/icons";
 
@@ -10,8 +10,6 @@ type CategorySectionProps = {
     categoryId?: string;
     collectionId?: string;
     region: HttpTypes.StoreRegion;
-    showSaleBadge?: boolean;
-    geniusDeal?: boolean;
     href?: string;
     isSmartDeals?: boolean;
 };
@@ -21,8 +19,6 @@ export default async function CategorySection({
     categoryId,
     collectionId,
     region,
-    showSaleBadge = false,
-    geniusDeal = false,
     href,
     isSmartDeals = false,
 }: CategorySectionProps) {
@@ -57,27 +53,27 @@ export default async function CategorySection({
                 className={
                     isSmartDeals
                         ? "flex items-center justify-center mb-6"
-                        : "flex items-center justify-between mb-6"
+                        : "flex items-center justify-between gap-4 mb-6"
                 }
             >
                 <h2
                     className={
                         isSmartDeals
-                            ? "text-3xl font-bold text-sales flex items-center gap-3"
-                            : "text-2xl font-bold text-gray-900 flex items-center gap-2"
+                            ? "text-3xl font-bold text-sales"
+                            : "text-2xl font-bold text-gray-900"
                     }
                 >
                     {title}
-                    {href && !isSmartDeals && (
-                        <LocalizedClientLink
-                            href={href}
-                            className="text-sm font-normal text-space_indigo hover:underline flex items-center gap-1"
-                        >
-                            Vezi toate
-                            <ChevronRight className="w-4 h-4" />
-                        </LocalizedClientLink>
-                    )}
                 </h2>
+                {href && !isSmartDeals && (
+                    <LocalizedClientLink
+                        href={href}
+                        className="text-sm font-semibold text-space_indigo hover:underline flex items-center gap-1 shrink-0"
+                    >
+                        Vezi toate
+                        <ChevronRight className="w-4 h-4" />
+                    </LocalizedClientLink>
+                )}
                 {href && isSmartDeals && (
                     <LocalizedClientLink
                         href={href}
@@ -89,21 +85,20 @@ export default async function CategorySection({
             </div>
 
             {/* Products Carousel */}
-            <ResponsiveCarousel
+            <SwiperCarousel
                 breakpoints={{ mobile: 2, tablet: 3, desktop: 5 }}
                 gap={16}
-                showDots={true}
                 infiniteScroll={true}
+                variant="products"
             >
                 {products.map((product) => (
-                    <ProductCard
+                    <ProductPreview
                         key={product.id}
                         product={product}
-                        showBadge={showSaleBadge}
-                        geniusDeal={geniusDeal}
+                        region={region}
                     />
                 ))}
-            </ResponsiveCarousel>
+            </SwiperCarousel>
         </section>
     );
 }

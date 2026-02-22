@@ -5,13 +5,15 @@ type CategorySidebarProps = {
   categories: HttpTypes.StoreProductCategory[]
 }
 
+const MAX_SIDEBAR_CATEGORIES = 10
+
 const CategorySidebar = ({ categories }: CategorySidebarProps) => {
-  const topLevel = categories.filter(
-    (cat) => !cat.parent_category
-  )
+  const topLevel = categories
+    .filter((cat) => !cat.parent_category)
+    .slice(0, MAX_SIDEBAR_CATEGORIES)
 
   return (
-    <div className="category-sidebar bg-white rounded-lg border border-gray-200 overflow-hidden">
+    <div className="category-sidebar bg-white rounded-lg border border-gray-200 overflow-hidden h-full">
       <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
         <h3 className="text-sm font-semibold text-space_indigo">
           Categorii

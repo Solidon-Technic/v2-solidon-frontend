@@ -1,6 +1,6 @@
 export { default as ProductCard } from "./product-card";
 export { default as ProductCarousel } from "./product-carousel";
-export { default as ResponsiveCarousel } from "./product-carousel/responsive";
+export { default as SwiperCarousel } from "./product-carousel/swiper-carousel";
 export { default as CategorySection } from "./category-section";
 export { default as CategorySectionSkeleton } from "./category-section/skeleton";
 export { default as SmartDealsSection } from "./smart-deals-section";

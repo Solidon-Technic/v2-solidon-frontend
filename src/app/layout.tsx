@@ -5,6 +5,13 @@ import ChatWidget from "@modules/ai-help/components/chat-widget"
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
+  title: {
+    default: "Solidon",
+    template: "%s | Solidon",
+  },
+  icons: {
+    icon: "/solidon_logo.png",
+  },
 }
 
 export default function RootLayout(props: { children: React.ReactNode }) {

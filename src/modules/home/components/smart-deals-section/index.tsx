@@ -1,8 +1,8 @@
 import { HttpTypes } from "@medusajs/types";
 import { listProducts } from "@lib/data/products";
 import { filterDiscountedProducts } from "@lib/util/get-discounted-products";
-import ResponsiveCarousel from "../product-carousel/responsive";
-import ProductCard from "../product-card";
+import SwiperCarousel from "../product-carousel/swiper-carousel";
+import ProductPreview from "@modules/products/components/product-preview";
 import LocalizedClientLink from "@modules/common/components/localized-client-link";
 import { ChevronRight } from "@medusajs/icons";
 
@@ -48,21 +48,20 @@ export default async function SmartDealsSection({
             </div>
 
             {/* Products Carousel */}
-            <ResponsiveCarousel
+            <SwiperCarousel
                 breakpoints={{ mobile: 2, tablet: 3, desktop: 5 }}
                 gap={16}
-                showDots={true}
                 infiniteScroll={true}
+                variant="products"
             >
                 {discountedProducts.map((product) => (
-                    <ProductCard
+                    <ProductPreview
                         key={product.id}
                         product={product}
-                        showBadge={true}
-                        geniusDeal={false}
+                        region={region}
                     />
                 ))}
-            </ResponsiveCarousel>
+            </SwiperCarousel>
         </section>
     );
 }

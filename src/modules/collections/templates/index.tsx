@@ -21,9 +21,9 @@ export default function CollectionTemplate({
   const sort = sortBy || "created_at"
 
   return (
-    <div className="flex flex-col small:flex-row small:items-start py-6 content-container">
+    <div className="flex flex-col small:flex-row small:items-start gap-8 small:gap-0 py-6 content-container">
       <RefinementList sortBy={sort} />
-      <div className="w-full">
+      <div className="w-full min-w-0">
         <div className="mb-8 text-2xl-semi">
           <h1>{collection.title}</h1>
         </div>
@@ -37,7 +37,7 @@ export default function CollectionTemplate({
           <PaginatedProducts
             sortBy={sort}
             page={pageNumber}
-            collectionId={collection.id}
+            collectionIds={[collection.id]}
             countryCode={countryCode}
           />
         </Suspense>

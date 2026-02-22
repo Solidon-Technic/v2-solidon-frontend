@@ -40,6 +40,8 @@ const SortProducts = ({
       items={sortOptions}
       value={sortBy}
       handleChange={handleChange}
+      collapsible
+      defaultOpen={false}
       data-testid={dataTestId}
     />
   )

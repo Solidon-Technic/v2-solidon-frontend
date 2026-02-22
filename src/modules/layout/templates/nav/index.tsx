@@ -4,6 +4,7 @@ import { listCategories } from "@lib/data/categories"
 import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import StoreLogo from "@modules/common/components/store-logo"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import SearchBar from "@modules/layout/components/search-bar"
@@ -19,30 +20,30 @@ export default async function Nav() {
   return (
     <div className="sticky top-0 inset-x-0 z-50">
       {/* Top Header Row */}
-      <header className="nav-header bg-space_indigo">
+      <header className="nav-header bg-white border-b border-neutral-200">
         <div className="content-container flex items-center h-16 gap-4">
           {/* Mobile menu */}
-          <div className="small:hidden flex items-center h-full text-white">
+          <div className="small:hidden flex items-center h-full text-neutral-800">
             <SideMenu regions={regions} />
           </div>
 
           {/* Logo */}
           <LocalizedClientLink
             href="/"
-            className="text-white text-xl font-bold tracking-wide hover:text-parchment transition-colors whitespace-nowrap"
+            className="flex items-center hover:opacity-90 transition-opacity"
             data-testid="nav-store-link"
           >
-            Solidon
+            <StoreLogo className="h-16 w-auto" width={240} height={80} />
           </LocalizedClientLink>
 
           {/* Search Bar */}
           <SearchBar />
 
           {/* Right actions */}
-          <div className="hidden small:flex items-center gap-5 ml-auto text-white text-sm whitespace-nowrap">
+          <div className="hidden small:flex items-center gap-5 ml-auto text-neutral-800 text-sm whitespace-nowrap">
             <LocalizedClientLink
               href="/account"
-              className="flex flex-col items-center hover:text-parchment transition-colors"
+              className="flex flex-col items-center hover:text-primary-500 transition-colors"
               data-testid="nav-account-link"
             >
               <svg
@@ -62,32 +63,11 @@ export default async function Nav() {
               <span className="text-xs">Contul meu</span>
             </LocalizedClientLink>
 
-            <LocalizedClientLink
-              href="/account#wishlist"
-              className="flex flex-col items-center hover:text-parchment transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                />
-              </svg>
-              <span className="text-xs">Favorite</span>
-            </LocalizedClientLink>
-
             <Suspense
               fallback={
                 <LocalizedClientLink
                   href="/cart"
-                  className="flex flex-col items-center hover:text-parchment transition-colors"
+                  className="flex flex-col items-center hover:text-primary-500 transition-colors"
                   data-testid="nav-cart-link"
                 >
                   <svg
@@ -113,12 +93,12 @@ export default async function Nav() {
           </div>
 
           {/* Mobile cart */}
-          <div className="small:hidden text-white">
+          <div className="small:hidden text-neutral-800">
             <Suspense
               fallback={
                 <LocalizedClientLink
                   href="/cart"
-                  className="hover:text-parchment"
+                  className="hover:text-primary-500"
                   data-testid="nav-cart-link"
                 >
                   Coș

@@ -76,7 +76,7 @@ export default function ProductCarousel({
                         aria-label="Previous products"
                         type="button"
                     >
-                        <ChevronLeft className="w-6 h-6 text-gray-700" />
+                        <ChevronLeft className="w-5 h-5 text-gray-700 shrink-0 block" />
                     </button>
                     <button
                         onClick={handleNext}
@@ -85,7 +85,7 @@ export default function ProductCarousel({
                         aria-label="Next products"
                         type="button"
                     >
-                        <ChevronRight className="w-6 h-6 text-gray-700" />
+                        <ChevronRight className="w-5 h-5 text-gray-700 shrink-0 block" />
                     </button>
                 </>
             )}
