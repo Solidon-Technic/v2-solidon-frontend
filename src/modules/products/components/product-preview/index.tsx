@@ -42,7 +42,7 @@ export default async function ProductPreview({
                 />
                 <div className="flex txt-compact-medium mt-4 justify-between">
                     <Text
-                        className="text-ui-fg-subtle"
+                        className="text-ui-fg-subtle line-clamp-2"
                         data-testid="product-title"
                     >
                         {product.title}
