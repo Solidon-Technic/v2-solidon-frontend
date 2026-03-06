@@ -7,4 +7,5 @@ export { default as SmartDealsSection } from "./smart-deals-section";
 export { default as Hero } from "./hero";
 export { default as CategorySidebar } from "./category-sidebar";
 export { default as CategoryCards } from "./category-cards";
+export { default as NewsletterCTA } from "./newsletter-cta";
 

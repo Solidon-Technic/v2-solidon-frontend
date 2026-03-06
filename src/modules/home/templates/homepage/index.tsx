@@ -6,6 +6,7 @@ import SmartDealsSection from "@modules/home/components/smart-deals-section"
 import CategorySidebar from "@modules/home/components/category-sidebar"
 import CategoryCards from "@modules/home/components/category-cards"
 import FeaturedProductsSection from "@modules/home/components/featured-products-section"
+import NewsletterCTA from "@modules/home/components/newsletter-cta"
 
 type HomepageTemplateProps = {
   region: HttpTypes.StoreRegion
@@ -71,6 +72,13 @@ export default function HomepageTemplate({
             href={`/categories/${category.handle}`}
           />
         ))}
+      </div>
+
+      {/* Newsletter CTA Section - before footer */}
+      <div className="py-8 md:py-12">
+        <div className="content-container">
+          <NewsletterCTA />
+        </div>
       </div>
     </div>
   )

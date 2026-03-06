@@ -21,8 +21,8 @@ type SwiperCarouselProps = {
 
 export default function SwiperCarousel({
   children,
-  breakpoints = { mobile: 2, tablet: 3, desktop: 5 },
-  gap = 16,
+  breakpoints = { mobile: 2, tablet: 3, desktop: 6 },
+  gap = 12,
   showDots = false,
   infiniteScroll = true,
   variant = "categories",
@@ -31,7 +31,7 @@ export default function SwiperCarousel({
 
   const mobile = breakpoints.mobile ?? 2
   const tablet = breakpoints.tablet ?? 3
-  const desktop = breakpoints.desktop ?? 5
+  const desktop = breakpoints.desktop ?? 6
 
   const swiperBreakpoints = {
     0: { slidesPerView: mobile, spaceBetween: gap },
@@ -50,7 +50,7 @@ export default function SwiperCarousel({
     swiperRef.current?.slideNext()
   }
 
-  const wrapperClass = variant === "products" ? "px-24" : "px-10 max-w-7xl mx-auto"
+  const wrapperClass = "max-w-[1440px] w-full mx-auto px-6"
 
   return (
     <div className={wrapperClass} role="region" aria-label="Product carousel" data-swiper-variant={variant}>

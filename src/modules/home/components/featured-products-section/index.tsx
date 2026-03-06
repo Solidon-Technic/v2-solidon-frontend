@@ -44,8 +44,8 @@ export default async function FeaturedProductsSection({
         </LocalizedClientLink>
       </div>
       <SwiperCarousel
-        breakpoints={{ mobile: 2, tablet: 3, desktop: 5 }}
-        gap={16}
+        breakpoints={{ mobile: 2, tablet: 3, desktop: 6 }}
+        gap={8}
         infiniteScroll={true}
         variant="products"
       >
