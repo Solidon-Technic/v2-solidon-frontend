@@ -40,7 +40,7 @@ export default function SwiperCarousel({
   }
 
   const showNav = children.length > 1
-  const useLoop = false
+  const useLoop = infiniteScroll && children.length > desktop
 
   const handlePrev = () => {
     swiperRef.current?.slidePrev()
