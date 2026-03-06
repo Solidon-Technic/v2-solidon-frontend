@@ -67,11 +67,13 @@ const CategoryCards = ({ categories }: CategoryCardsProps) => {
   }
 
   return (
-    <SwiperCarousel
-      breakpoints={{ mobile: 2, tablet: 3, desktop: 6 }}
-      gap={12}
-      infiniteScroll={topLevel.length > 1}
-    >
+    <div>
+      <h2 className="text-2xl font-bold text-gray-900 mb-4">Categorii</h2>
+      <SwiperCarousel
+        breakpoints={{ mobile: 2, tablet: 3, desktop: 7 }}
+        gap={12}
+        infiniteScroll={topLevel.length > 1}
+      >
       {topLevel.map((category, index) => (
         <LocalizedClientLink
           key={category.id}
@@ -95,7 +97,8 @@ const CategoryCards = ({ categories }: CategoryCardsProps) => {
           </div>
         </LocalizedClientLink>
       ))}
-    </SwiperCarousel>
+      </SwiperCarousel>
+    </div>
   )
 }
 
