@@ -114,7 +114,7 @@ export const getProductsByIds = async ({
                     query,
                     headers,
                     next,
-                    cache: "no-store",
+                    cache: "force-cache",
                 }
             )
         )
@@ -192,7 +192,7 @@ export const listProducts = async ({
                 headers,
                 next,
                 // Ensure fresh pricing after backend changes (prices/regions)
-                cache: "no-store",
+                cache: "force-cache",
             }
         )
         .then(({ products, count }) => {
