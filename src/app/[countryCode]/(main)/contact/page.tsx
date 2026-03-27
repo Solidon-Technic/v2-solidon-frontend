@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description:
     "Contactați-ne. Showroom București, email, telefon. SOLIDON TEHNIC SRL.",
 }
+export const revalidate = 3600
 
 const MAP_ADDRESS = "Strada Sadului 35, Sector 5, București, Romania"
 const MAP_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_ADDRESS)}`

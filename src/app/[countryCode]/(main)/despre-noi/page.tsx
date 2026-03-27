@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description:
     "Solidon Tehnic SRL – specialist în accesorii pentru termopane și ferestre. Calitate, profesionalism și servicii adaptate nevoilor clienților.",
 }
+export const revalidate = 3600
 
 export default function DespreNoiPage() {
   return (

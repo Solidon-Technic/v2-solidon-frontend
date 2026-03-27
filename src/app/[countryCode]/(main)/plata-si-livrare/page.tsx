@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Modalități de plată și opțiuni de livrare în România. Fan Courier și Curiera.",
 }
+export const revalidate = 3600
 
 export default function PlataSiLivrarePage() {
   return (

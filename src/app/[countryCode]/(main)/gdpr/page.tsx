@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Politica de confidențialitate și prelucrarea datelor cu caracter personal conform GDPR.",
 }
+export const revalidate = 3600
 
 export default function GdprPage() {
   return (

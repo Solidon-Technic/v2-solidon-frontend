@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "Cele mai bune termopane de pe piata.",
 }
+export const revalidate = 60
 
 export default async function Home(props: {
   params: Promise<{ countryCode: string }>

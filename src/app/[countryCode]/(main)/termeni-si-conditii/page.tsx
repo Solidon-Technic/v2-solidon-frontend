@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Termenii și condițiile de utilizare a serviciului Solidon. Returnări, transport.",
 }
+export const revalidate = 3600
 
 export default function TermeniSiConditiiPage() {
   return (

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Condiții de returnare a produselor. Dreptul de retur în 14 zile pentru persoane fizice.",
 }
+export const revalidate = 3600
 
 export default function PoliticaDeReturPage() {
   return (

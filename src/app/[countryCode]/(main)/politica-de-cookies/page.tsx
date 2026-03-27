@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "Informații despre utilizarea cookie-urilor pe site-ul Solidon.",
 }
+export const revalidate = 3600
 
 export default function PoliticaDeCookiesPage() {
   return (
